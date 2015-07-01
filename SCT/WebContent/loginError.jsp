@@ -7,7 +7,7 @@
 <title>Errore di Log in</title>
 </head>
 <body>
-	<h1>    SafeCar</h1>
+	<h1>SafeCar</h1>
 	<br>
 	<h2>Matricola o password errati</h2>
 	</br>
