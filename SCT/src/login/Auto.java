@@ -61,7 +61,7 @@ public class Auto {
 	}
 
 	//Esegue la query per ottenere tutte le auto 
-	public static List<Auto> getAuto() {
+	public static List<Auto> getListaAuto() {
 			
 		List<Auto> res = new ArrayList<>();
 		try {

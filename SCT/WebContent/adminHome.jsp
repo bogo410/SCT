@@ -19,7 +19,42 @@ matricola = session.getAttribute("utenteAttivo").toString();
 <div id="wrapper">
     <div id="header"><div id="header-content">SafeCar</div></div>
     <div id="content">
-        <div id="sidebar">Sidebar</div>
+        <div id="sidebar">
+        	Parco Auto
+        	
+        	
+        	
+        	<thead>
+				<tr>
+					<td></td>
+					<td>Targa</td>
+					<td>CodResponsabile</td>
+					<td></td>
+
+				</tr>
+			</thead>
+			<tbody>
+				<%
+				List<Auto> listaAuto = Auto.getListaAuto();
+			%>
+				<%
+				for (Auto a : listaAuto) {
+			%>
+
+				<tr>
+					<br>
+						<td><%=a.getTarga()%></td>
+						<td><%=a.getCodResponsabile()%></td>
+					</br>
+				</tr>
+				<%
+				}
+			%>
+			</tbody>
+		</table>
+		
+		
+        </div>
         
         <div id="main">
             <body>
