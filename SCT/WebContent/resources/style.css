@@ -19,6 +19,7 @@ html, body {
     border: 1px solid magenta;
     height: 32px; /* height + top/bottom paddding + top/bottom border must add up to footer height */
     padding: 8px;
+    text-align: right;
 }
 .push {
     height: 50px;
@@ -32,18 +33,35 @@ html, body {
     border: 1px solid magenta;
     height: 32px; /* height + top/bottom paddding + top/bottom border must add up to footer height */
     padding: 8px;
+    text-align: center;
+    font-size: 200%;
+    text-shadow: 2px 2px #FF0000;
 }
 #content {
     height: 100%;
 }
 #sidebar {
     border: 1px solid skyblue;
-    width: 100px;
+    width: 210px;
     position: absolute;
     left: 0;
     top: 50px;
     bottom: 50px;
+    text-align:center;
+    
 }
 #main {
-    margin-left: 102px
+    margin-left: 212px;
+    text-align: center;
+}
+
+#sideTable {
+	text-align: center;
+	padding: 10px;
+	border-spacing: 5px;
+}
+
+#sideHead {
+	padding: 8px;
+    font-size: 130%;
 }

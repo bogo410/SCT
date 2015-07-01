@@ -20,20 +20,15 @@ matricola = session.getAttribute("utenteAttivo").toString();
     <div id="header"><div id="header-content">SafeCar</div></div>
     <div id="content">
         <div id="sidebar">
-        	Parco Auto
-        	
-        	
-        	
-        	<thead>
+        	<div id="sideHead">Parco Auto</div>
+        	<br>
+        	<table id="sideTable">
 				<tr>
-					<td></td>
-					<td>Targa</td>
-					<td>CodResponsabile</td>
-					<td></td>
+					<th>Targa</th>
+					<th>Responsabile</th>
 
 				</tr>
-			</thead>
-			<tbody>
+			
 				<%
 				List<Auto> listaAuto = Auto.getListaAuto();
 			%>
@@ -42,16 +37,14 @@ matricola = session.getAttribute("utenteAttivo").toString();
 			%>
 
 				<tr>
-					<br>
 						<td><%=a.getTarga()%></td>
 						<td><%=a.getCodResponsabile()%></td>
-					</br>
+					
 				</tr>
 				<%
 				}
 			%>
-			</tbody>
-		</table>
+			</table>
 		
 		
         </div>
@@ -69,7 +62,7 @@ matricola = session.getAttribute("utenteAttivo").toString();
 </div>
 <div id="footer">
 	<div id="footer-content">
-			<a href="logout.jsp">Effettua il log out</a>
+			<a href="logout.jsp">Logout</a>
     </div>
 </div>
 
