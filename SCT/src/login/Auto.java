@@ -28,7 +28,7 @@ public class Auto {
 		this.codResponsabile = codResponsabile;
 	}
 
-//costruttore utilizzato da eventuale query
+	//costruttore utilizzato da eventuale query
 	public Auto(ResultSet rs) throws SQLException {
 		
 		this.targa = rs.getString("targa");
@@ -39,5 +39,102 @@ public class Auto {
 		this.velocita = rs.getInt("velocita");
 		this.codResponsabile = rs.getString("codResponsabile");
 	}
+	
+	//Esegue la query per ottenere le auto appartenenti al dipendente con la matricola inserita
+	public static Auto getAuto(String codResponsabile) {
+			
+		Auto res = null;
+		try {
+			DataSourceConnection dsc = DataSourceConnection.getIstanza();
+			String query = "SELECT * FROM Auto WHERE CodResponsabile = ? ";
+			Object[] parametri = new Object[1];
+			parametri[0] = codResponsabile;
+			ResultSet rs = dsc.eseguiQuery(query, parametri);
+			System.out.print("----------" + query + codResponsabile + "----------");
+			if (rs.next())
+				res = new Auto(rs);
+		} catch (SQLException e) {
+			System.out.println("Query fallita: " + e);
+		}
+		return res;
+		
+	}
 
+	//Esegue la query per ottenere tutte le auto 
+	public static List<Auto> getAuto() {
+			
+		List<Auto> res = new ArrayList<>();
+		try {
+				
+			DataSourceConnection dsc = DataSourceConnection.getIstanza();
+			String query = "SELECT * FROM Auto ";
+			ResultSet rs = dsc.eseguiQuery(query, null);
+			while (rs.next())
+				res.add(new Auto(rs));
+		} catch (SQLException e) {
+				
+			System.out.println("Query fallita: " + e);
+		}
+		return res;
+
+	}
+
+
+	//Getters e Setters
+	public String getTarga() {
+		return targa;
+	}
+
+	public void setTarga(String targa) {
+		this.targa = targa;
+	}
+
+	public String getModello() {
+		return modello;
+	}
+
+	public void setModello(String modello) {
+		this.modello = modello;
+	}
+
+	public float getLatitudine() {
+		return latitudine;
+	}
+
+	public void setLatitudine(float latitudine) {
+		this.latitudine = latitudine;
+	}
+
+	public float getLongitudine() {
+		return longitudine;
+	}
+
+	public void setLongitudine(float longitudine) {
+		this.longitudine = longitudine;
+	}
+
+	public String getModalita() {
+		return modalita;
+	}
+
+	public void setModalita(String modalita) {
+		this.modalita = modalita;
+	}
+
+	public int getVelocita() {
+		return velocita;
+	}
+
+	public void setVelocita(int velocita) {
+		this.velocita = velocita;
+	}
+
+	public String getCodResponsabile() {
+		return codResponsabile;
+	}
+
+	public void setCodResponsabile(String codResponsabile) {
+		this.codResponsabile = codResponsabile;
+	}
+	
 }

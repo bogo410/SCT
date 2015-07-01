@@ -43,7 +43,7 @@ public class Dipendente {
 		Dipendente res = null;
 		try {
 			DataSourceConnection dsc = DataSourceConnection.getIstanza();
-			String query = "SELECT * FROM Dipendente WHERE matricola = ? ";      	// punto e virgola??????
+			String query = "SELECT * FROM Dipendente WHERE matricola = ? ";
 			Object[] parametri = new Object[1];
 			parametri[0] = matricola;
 			ResultSet rs = dsc.eseguiQuery(query, parametri);
