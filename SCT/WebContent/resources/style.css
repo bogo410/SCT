@@ -64,4 +64,14 @@ html, body {
 #sideHead {
 	padding: 8px;
     font-size: 130%;
+<<<<<<< HEAD
+=======
+}
+
+#Logout {
+	position: relative;
+	text-align: right;
+	top: -35px;
+	right: 10px
+>>>>>>> refs/heads/WebMod
 }
