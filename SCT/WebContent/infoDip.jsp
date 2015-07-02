@@ -18,6 +18,9 @@ matricola = session.getAttribute("utenteAttivo").toString();
 
 <div id="wrapper">
     <div id="header"><div id="header-content">SafeCar</div></div>
+    <div id="Logout">
+		<a href="logout.jsp"><%=matricola%>, effettua il logout</a>
+	</div>
     <div id="content">
         <div id="sidebar">
         	<div id="sideHead">Parco Auto</div>

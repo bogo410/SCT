@@ -22,6 +22,9 @@ String matricolaResp = request.getParameter( "codResp" );
 
 <div id="wrapper">
     <div id="header"><div id="header-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SafeCar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=matricola%></div></div>
+    <div id="Logout">
+		<a href="logout.jsp"><%=matricola%>, effettua il logout</a>
+	</div>
     <div id="content">
         <div id="sidebar">
         	<div id="sideHead">Parco Auto</div>

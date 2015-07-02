@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Logout</title>
 </head>
 <body>
-
+	<h3>Hai effettuato il logout</h3>
+	<%
+		session.invalidate();
+	%>
 </body>
 </html>
