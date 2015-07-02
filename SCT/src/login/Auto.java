@@ -1,4 +1,4 @@
-package relazioni;
+package login;
 
 import database.DataSourceConnection;
 import java.sql.ResultSet;
@@ -41,21 +41,19 @@ public class Auto {
 	}
 	
 	//Esegue la query per ottenere le auto appartenenti al dipendente con la matricola inserita
-	public static List<Auto> getAuto(String codResponsabile) {
+	public static Auto getAuto(String codResponsabile) {
 			
-		List<Auto> res = new ArrayList<>();
+		Auto res = null;
 		try {
-				
 			DataSourceConnection dsc = DataSourceConnection.getIstanza();
 			String query = "SELECT * FROM Auto WHERE CodResponsabile = ? ";
 			Object[] parametri = new Object[1];
 			parametri[0] = codResponsabile;
 			ResultSet rs = dsc.eseguiQuery(query, parametri);
 			System.out.print("----------" + query + codResponsabile + "----------");
-			while (rs.next())
-				res.add(new Auto(rs));
+			if (rs.next())
+				res = new Auto(rs);
 		} catch (SQLException e) {
-				
 			System.out.println("Query fallita: " + e);
 		}
 		return res;

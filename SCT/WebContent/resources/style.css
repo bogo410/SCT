@@ -19,7 +19,7 @@ html, body {
     border: 1px solid magenta;
     height: 32px; /* height + top/bottom paddding + top/bottom border must add up to footer height */
     padding: 8px;
-    text-align: center;
+    text-align: right;
 }
 .push {
     height: 50px;
@@ -48,7 +48,7 @@ html, body {
     top: 50px;
     bottom: 50px;
     text-align:center;
-
+    
 }
 #main {
     margin-left: 212px;

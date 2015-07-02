@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-=======
-	pageEncoding="ISO-8859-1" import="login.*" import="relazioni.*"
-	import="java.util.*" import="java.sql.*"%>
->>>>>>> master
+	pageEncoding="ISO-8859-1" import="login.*" import="java.util.*"
+	import="java.sql.*"%>
 <%
 String matricola = "";
 matricola = session.getAttribute("utenteAttivo").toString();
@@ -71,11 +69,10 @@ matricola = session.getAttribute("utenteAttivo").toString();
 </div>
 <div id="footer">
 	<div id="footer-content">
+		
 
-=======
-		Authors: A.Bogoni, F.Onori, C.Capasso, S.Spellini
-    </div>
->>>>>>> master
+		
+	</div>
 </div>
 
 </html>
