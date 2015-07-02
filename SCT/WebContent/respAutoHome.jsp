@@ -52,7 +52,7 @@ matricola = session.getAttribute("utenteAttivo").toString();
         <div id="main">
             <body>
 				<br>
-	    			<h2>Benvenuto nella Admin Home <%=matricola%></h2>
+	    			<h2>Benvenuto nella tua Home <%=matricola%></h2>
 				</br>
 	    		
     		</body>

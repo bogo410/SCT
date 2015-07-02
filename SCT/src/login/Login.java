@@ -22,7 +22,7 @@ public class Login extends HttpServlet {
 			if (dip != null && dip.getPassword().equals(request.getParameter("password"))) {
 				HttpSession session = request.getSession(true);
 				session.setAttribute("utenteAttivo", dip.getMatricola());
-				session.setAttribute("ruoloUtenteAttivo", dip.getRuolo());
+				//session.setAttribute("ruoloUtenteAttivo", dip.getRuolo());
 
 				if (dip.getRuolo().equals(RESPAUTO))
 					response.sendRedirect("respAutoHome.jsp");
