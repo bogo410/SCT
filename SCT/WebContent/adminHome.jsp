@@ -44,8 +44,8 @@ matricola = session.getAttribute("utenteAttivo").toString();
 			%>
 
 				<tr>
-						<td><%=a.getTarga()%></td>
-						<td><%=a.getCodResponsabile()%></td>
+						<td> <a href="infoAuto.jsp?targa=<%=a.getTarga()%>&codResp=<%=a.getCodResponsabile()%>"> <%=a.getTarga()%> </a></td>
+						<td> <a href="infoDip.jsp"> <%=a.getCodResponsabile()%></a></td>
 					
 				</tr>
 				<%

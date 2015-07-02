@@ -21,9 +21,13 @@ String matricolaResp = request.getParameter( "codResp" );
 <title>Informazioni Auto</title>
 
 <div id="wrapper">
-    <div id="header"><div id="header-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SafeCar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=matricola%></div></div>
-    <div id="Logout">
-		<a href="logout.jsp"><%=matricola%>, effettua il logout</a>
+    <div id="header">
+		<div id="header-content">
+			SafeCar
+		</div>
+		<div id="Logout">
+		<a href="logout.jsp"><%=matricola%>:logout</a>
+	</div>
 	</div>
     <div id="content">
         <div id="sidebar">
@@ -36,16 +40,22 @@ String matricolaResp = request.getParameter( "codResp" );
 
 				</tr>
 			
-				<%
-				List<Auto> listaAuto = Auto.getListaAuto();
+			<%
+				//se l'utente è un admin la query restituisce l'intera lista delle auto
+				//altrimenti restituisce solo le proprie auto
+				List<Auto> listaAuto = null;
+				if( (Auto.getRuoloUtente(matricola)).equals("Responsabile Auto") ){ listaAuto = Auto.getAutoDip(matricola);
+				}else if((Auto.getRuoloUtente(matricola)).equals("Admin") || (Auto.getRuoloUtente(matricola)).equals("Admin Esterno")){
+					listaAuto = Auto.getListaAuto();
+				}
 			%>
-				<%
+			<%	
 				for (Auto a : listaAuto) {
 			%>
 
 				<tr>
-						<td><%=a.getTarga()%></td>
-						<td><%=a.getCodResponsabile()%></td>
+						<td> <a href="infoAuto.jsp?targa=<%=a.getTarga()%>&codResp=<%=a.getCodResponsabile()%>"> <%=a.getTarga()%> </a></td>
+						<td> <a href="infoDip.jsp"> <%=a.getCodResponsabile()%></a></td>
 					
 				</tr>
 				<%

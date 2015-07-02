@@ -37,7 +37,7 @@ matricola = session.getAttribute("utenteAttivo").toString();
 				</tr>
 			
 				<%
-				List<Auto> listaAuto = Auto.getAuto(matricola);
+				List<Auto> listaAuto = Auto.getAutoDip(matricola);
 			%>
 				<%
 				for (Auto a : listaAuto) {
