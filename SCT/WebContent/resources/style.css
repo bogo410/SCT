@@ -9,7 +9,7 @@ html, body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -50px; /* the bottom margin is the negative value of the footer's height */
+    margin: 0 auto -50px;  /*the bottom margin is the negative value of the footer's height */
     position: relative
 }
 #footer {
@@ -64,4 +64,11 @@ html, body {
 #sideHead {
 	padding: 8px;
     font-size: 130%;
+}
+
+#Logout {
+	position: relative;
+	text-align: right;
+	top: -30px;
+	right: 10px
 }
