@@ -3,11 +3,11 @@
 	import="java.util.*" import="java.sql.*"%>
 <%
 String matricola = "";
-String matricolaResp = "";
-String targa = "";
 matricola = session.getAttribute("utenteAttivo").toString();
-matricolaResp = session.getAttribute("utenteAttivo").toString();
-targa = session.getAttribute("utenteAttivo").toString();
+/*matricolaResp = session.getAttribute("codResp").toString();
+targa = session.getAttribute("targa").toString();*/
+String targa = request.getParameter( "targa" ); 
+String matricolaResp = request.getParameter( "codResp" );
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -56,7 +56,7 @@ targa = session.getAttribute("utenteAttivo").toString();
         <div id="main">
             <body>
 				<br>
-	    			<h2>Informazioni Auto Targa:<%=targa%> Responsabile:<%=matricolaResp%></h2>
+	    			<h2>Informazioni Auto Targa: <%=targa%>, Responsabile: <%=matricolaResp%></h2>
 				</br>
 	    		
     		</body>

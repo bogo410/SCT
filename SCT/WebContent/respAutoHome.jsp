@@ -17,7 +17,14 @@ matricola = session.getAttribute("utenteAttivo").toString();
 <title>Home Responsabile Auto</title>
 
 <div id="wrapper">
-    <div id="header"><div id="header-content">SafeCar</div></div>
+    <div id="header">
+		<div id="header-content">
+			SafeCar
+		</div>
+		<div id="Logout">
+			<a href="logout.jsp"><%=matricola%>, effettua il logout</a>
+		</div>
+	</div>
     <div id="content">
         <div id="sidebar">
         	<div id="sideHead">Parco Auto</div>
@@ -37,8 +44,8 @@ matricola = session.getAttribute("utenteAttivo").toString();
 			%>
 
 				<tr>
-						<td> <a href="infoAuto.jsp"> <%=a.getTarga()%> </a></td>
-						<td> <a href="infoDip.jsp"> <%=a.getCodResponsabile()%> </a></td>
+						<td> <a href="infoAuto.jsp?targa=<%=a.getTarga()%>&codResp=<%=a.getCodResponsabile()%>"> <%=a.getTarga()%> </a></td>
+						<td> <a href="infoDip.jsp"> <%=a.getCodResponsabile()%></a></td>
 					
 				</tr>
 				<%
