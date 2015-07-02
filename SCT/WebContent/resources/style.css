@@ -9,7 +9,7 @@ html, body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -50px;  /*the bottom margin is the negative value of the footer's height */
+    margin: 0 auto -50px; /* the bottom margin is the negative value of the footer's height */
     position: relative
 }
 #footer {
@@ -19,7 +19,7 @@ html, body {
     border: 1px solid magenta;
     height: 32px; /* height + top/bottom paddding + top/bottom border must add up to footer height */
     padding: 8px;
-    text-align: center;
+    text-align: right;
 }
 .push {
     height: 50px;
@@ -48,7 +48,7 @@ html, body {
     top: 50px;
     bottom: 50px;
     text-align:center;
-
+    
 }
 #main {
     margin-left: 212px;
@@ -64,11 +64,4 @@ html, body {
 #sideHead {
 	padding: 8px;
     font-size: 130%;
-}
-
-#Logout {
-	position: relative;
-	text-align: right;
-	top: -30px;
-	right: 10px
 }

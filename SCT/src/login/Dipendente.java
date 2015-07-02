@@ -1,4 +1,4 @@
-package relazioni;
+package login;
 
 import database.DataSourceConnection;
 import java.sql.ResultSet;
@@ -47,7 +47,7 @@ public class Dipendente {
 			Object[] parametri = new Object[1];
 			parametri[0] = matricola;
 			ResultSet rs = dsc.eseguiQuery(query, parametri);
-			//System.out.print("----------" + query + matricola + "----------");
+			System.out.print("----------" + query + matricola + "----------");
 			if (rs.next())
 				res = new Dipendente(rs);
 		} catch (SQLException e) {
