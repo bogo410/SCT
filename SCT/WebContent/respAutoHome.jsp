@@ -1,18 +1,68 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1" import="login.*" import="relazioni.*"
+	import="java.util.*" import="java.sql.*"%>
+<%
+String matricola = "";
+matricola = session.getAttribute("utenteAttivo").toString();
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home Responsabile Auto</title>
 </head>
-<body>
-	<h1>SafeCar</h1>
-	<br>
-	<h2>Benvenuto nella tua Home</h2>
-	</br>
-	<hr>
-	<a href="logout.jsp">Effettua il log out</a>
-	<hr>
-</body>
+	<link rel="stylesheet" href="resources/style.css" type="text/css">
+
+<title>Home Responsabile Auto</title>
+
+<div id="wrapper">
+    <div id="header"><div id="header-content">SafeCar</div></div>
+    <div id="content">
+        <div id="sidebar">
+        	<div id="sideHead">Parco Auto</div>
+        	<br>
+        	<table id="sideTable">
+				<tr>
+					<th>Targa</th>
+					<th>Responsabile</th>
+
+				</tr>
+			
+				<%
+				List<Auto> listaAuto = Auto.getAuto(matricola);
+			%>
+				<%
+				for (Auto a : listaAuto) {
+			%>
+
+				<tr>
+						<td> <a href="infoAuto.jsp"> <%=a.getTarga()%> </a></td>
+						<td> <a href="infoDip.jsp"> <%=a.getCodResponsabile()%> </a></td>
+					
+				</tr>
+				<%
+				}
+			%>
+			</table>
+		
+		
+        </div>
+        
+        <div id="main">
+            <body>
+				<br>
+	    			<h2>Benvenuto nella Admin Home <%=matricola%></h2>
+				</br>
+	    		
+    		</body>
+        </div>
+    </div>
+    <div class="push"></div>
+</div>
+<div id="footer">
+	<div id="footer-content">
+		Authors: A.Bogoni, F.Onori, C.Capasso, S.Spellini
+    </div>
+</div>
 </html>
