@@ -2,8 +2,12 @@
 	pageEncoding="ISO-8859-1" import="login.*" import="relazioni.*"
 	import="java.util.*" import="java.sql.*"%>
 <%
-String matricola = "";
-matricola = session.getAttribute("utenteAttivo").toString();
+	String matricola = "";
+	if( session.getAttribute("utenteAttivo") == null || session.getAttribute("utenteAttivo").equals("")){
+		response.sendRedirect("loginAtteso.jsp");
+	}else{
+		matricola = session.getAttribute("utenteAttivo").toString();
+	}
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

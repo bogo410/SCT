@@ -2,12 +2,25 @@
 	pageEncoding="ISO-8859-1" import="login.*" import="relazioni.*"
 	import="java.util.*" import="java.sql.*"%>
 <%
-String matricola = "";
-matricola = session.getAttribute("utenteAttivo").toString();
-/*matricolaResp = session.getAttribute("codResp").toString();
-targa = session.getAttribute("targa").toString();*/
-String targa = request.getParameter( "targa" ); 
-String matricolaResp = request.getParameter( "codResp" );
+	String matricola = "";
+	String targa = "";
+	String matricolaResp = "";
+	String modello = "";
+	String latitudine = "";
+	String longitudine = "";
+	String modalita = "";
+	String velocita = "";
+	if( session.getAttribute("utenteAttivo") == null || session.getAttribute("utenteAttivo").equals("")){
+		response.sendRedirect("loginAtteso.jsp");
+	}else{
+		matricola = session.getAttribute("utenteAttivo").toString();
+		targa = request.getParameter( "targa" );
+		matricolaResp = request.getParameter( "codResp" );
+		modello = request.getParameter( "mod" );
+		latitudine = request.getParameter( "lat" );
+		longitudine = request.getParameter( "long" );
+		modalita = request.getParameter( "modal" );
+		velocita = request.getParameter( "vel" );
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -69,12 +82,13 @@ String matricolaResp = request.getParameter( "codResp" );
 			%>
 
 				<tr>
-						<td> <a href="infoAuto.jsp?targa=<%=a.getTarga()%>&codResp=<%=a.getCodResponsabile()%>"> <%=a.getTarga()%> </a></td>
+						<td> <a href="infoAuto.jsp?targa=<%=a.getTarga()%>&codResp=<%=a.getCodResponsabile()%>&mod=<%=a.getModello()%>&lat=<%=a.getLatitudine()%>&long=<%=a.getLongitudine()%>&modal=<%=a.getModalita()%>&vel=<%=a.getVelocita()%>"> <%=a.getTarga()%> </a></td>
 						<td> <a href="infoDip.jsp"> <%=a.getCodResponsabile()%></a></td>
 					
 				</tr>
 				<%
 				}
+	}//qui chiudo l'if iniziale per il controllo sessione del responsabile
 			%>
 			</table>
 		
@@ -84,9 +98,24 @@ String matricolaResp = request.getParameter( "codResp" );
         <div id="main">
             <body>
 				<br>
-	    			<h2>Informazioni Auto Targa: <%=targa%>, Responsabile: <%=matricolaResp%></h2>
-				</br>
-	    		
+	    			<h2>Informazioni Auto </h2>
+	    			<h3>Targa: <%=targa%>, Responsabile: <%=matricolaResp%></h3>
+				<br>
+				<br>
+	    		Modello :	<%=modello%>
+	    		<br>
+	    		<br>
+  				Latitudine :	<%=latitudine%>
+  				<br>
+  				<br>
+  				Longitudine :	<%=longitudine%>
+  				<br>
+  				<br>
+  				Modalita :	<%=modalita%>
+  				<br>
+  				<br>
+  				Velocita :	<%=velocita%>
+  				<br>
     		</body>
         </div>
     </div>

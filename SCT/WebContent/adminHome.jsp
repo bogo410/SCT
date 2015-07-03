@@ -8,9 +8,9 @@
 		response.sendRedirect("loginAtteso.jsp");
 	}else{
 		matricola = session.getAttribute("utenteAttivo").toString();
-		if( !((Auto.getRuoloUtente(session.getAttribute("utenteAttivo").toString())).equals("Admin") || (Auto.getRuoloUtente(session.getAttribute("utenteAttivo").toString())).equals("Admin Esterno")) ){
-	}
-		response.sendRedirect("permessoNegato.jsp");
+		if( !((Auto.getRuoloUtente(matricola).equals("Admin")) || (Auto.getRuoloUtente(matricola).equals("Admin Esterno")))){
+			response.sendRedirect("permessoNegato.jsp");
+		}
 	}
 %>
 
@@ -37,7 +37,8 @@
 			<%	
 				}else if((Auto.getRuoloUtente(matricola)).equals("Admin") || (Auto.getRuoloUtente(matricola)).equals("Admin Esterno") ){
 					%>
-					<a href="adminHome.jsp"> SafeCar</a>
+					<!--  <a href="adminHome.jsp"> SafeCar</a> -->
+					<a href="adminHome.jsp" title="SafeCar" id="logo">SafeCar</a>
 			<%	
 				}
 			%>
@@ -67,7 +68,7 @@
 			%>
 
 				<tr>
-						<td> <a href="infoAuto.jsp?targa=<%=a.getTarga()%>&codResp=<%=a.getCodResponsabile()%>"> <%=a.getTarga()%> </a></td>
+						<td> <a href="infoAuto.jsp?targa=<%=a.getTarga()%>&codResp=<%=a.getCodResponsabile()%>&mod=<%=a.getModello()%>&lat=<%=a.getLatitudine()%>&long=<%=a.getLongitudine()%>&modal=<%=a.getModalita()%>&vel=<%=a.getVelocita()%>"> <%=a.getTarga()%> </a></td>
 						<td> <a href="infoDip.jsp"> <%=a.getCodResponsabile()%></a></td>
 					
 				</tr>

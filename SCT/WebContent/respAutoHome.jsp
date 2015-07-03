@@ -2,8 +2,15 @@
 	pageEncoding="ISO-8859-1" import="login.*" import="relazioni.*"
 	import="java.util.*" import="java.sql.*"%>
 <%
-String matricola = "";
-matricola = session.getAttribute("utenteAttivo").toString();
+	String matricola = "";
+	if( session.getAttribute("utenteAttivo") == null || session.getAttribute("utenteAttivo").equals("")){
+		response.sendRedirect("loginAtteso.jsp");
+	}else{
+		matricola = session.getAttribute("utenteAttivo").toString();
+		if( !(Auto.getRuoloUtente(matricola)).equals("Responsabile Auto")  ){
+			response.sendRedirect("permessoNegato.jsp");
+		}
+	}
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -59,7 +66,7 @@ matricola = session.getAttribute("utenteAttivo").toString();
 			%>
 
 				<tr>
-						<td> <a href="infoAuto.jsp?targa=<%=a.getTarga()%>&codResp=<%=a.getCodResponsabile()%>"> <%=a.getTarga()%> </a></td>
+						<td> <a href="infoAuto.jsp?targa=<%=a.getTarga()%>&codResp=<%=a.getCodResponsabile()%>&mod=<%=a.getModello()%>&lat=<%=a.getLatitudine()%>&long=<%=a.getLongitudine()%>&modal=<%=a.getModalita()%>&vel=<%=a.getVelocita()%>"> <%=a.getTarga()%> </a></td>
 						<td> <a href="infoDip.jsp"> <%=a.getCodResponsabile()%></a></td>
 					
 				</tr>

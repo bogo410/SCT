@@ -5,6 +5,14 @@ html, body {
     min-height: 100%;
     height: 100%;
 }
+#logo {
+	background-image:url("templates/logo.gif");
+    display:block;
+    height:100px;
+    text-indent:-9999px;
+    width:460px;
+	
+}
 #wrapper {
     min-height: 100%;
     height: auto !important;
