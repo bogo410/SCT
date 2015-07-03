@@ -22,8 +22,6 @@
 </head>
 	<link rel="stylesheet" href="resources/style.css" type="text/css">
 
-<title>Home Admin</title>
-
 <div id="wrapper">
     <div id="header">
 		<div id="header-content">
@@ -38,7 +36,7 @@
 				}else if((Auto.getRuoloUtente(matricola)).equals("Admin") || (Auto.getRuoloUtente(matricola)).equals("Admin Esterno") ){
 					%>
 					<!--  <a href="adminHome.jsp"> SafeCar</a> -->
-					<a href="adminHome.jsp" title="SafeCar" id="logo">SafeCar</a>
+					<a href="adminHome.jsp"> <img src="templates/logo.png" alt="logo" /></a>
 			<%	
 				}
 			%>
@@ -69,7 +67,7 @@
 
 				<tr>
 						<td> <a href="infoAuto.jsp?targa=<%=a.getTarga()%>&codResp=<%=a.getCodResponsabile()%>&mod=<%=a.getModello()%>&lat=<%=a.getLatitudine()%>&long=<%=a.getLongitudine()%>&modal=<%=a.getModalita()%>&vel=<%=a.getVelocita()%>"> <%=a.getTarga()%> </a></td>
-						<td> <a href="infoDip.jsp"> <%=a.getCodResponsabile()%></a></td>
+						<td> <a href="infoDip.jsp?dipSel=<%=a.getCodResponsabile()%>"> <%=a.getCodResponsabile()%></a></td>
 					
 				</tr>
 				<%
@@ -84,6 +82,29 @@
 				<br>
 	    			<h2>Benvenuto nella Admin Home <%=matricola%></h2>
 				<br>
+					<br>
+					<%
+						Dipendente dip = Dipendente.getDipendente(matricola);
+					%>
+					<br>
+	    			Nome :	<%=dip.getNome()%>
+	    			<br>
+		    		<br>
+	  				Cognome :	<%=dip.getCognome()%>
+	  				<br>
+	  				<br>
+	  				Ruolo :	   <%=dip.getRuolo()%>
+	  				<br>
+	  				<br>
+	  				Numero di Telefono :	<%=dip.getNumTelefono()%>
+	  				<br>
+	  				<br>
+	  				e-Mail :	<%=dip.getEmail()%>
+	  				<br>
+	  				<br>
+	  				<br>
+	  				<br>
+	  				<a href="video.jsp"> Modifica</a>
 	    		
         </div>
     </div>

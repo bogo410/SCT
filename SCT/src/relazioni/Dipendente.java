@@ -15,8 +15,9 @@ public class Dipendente {
 	private String password;
 	private String numTelefono;
 	private String ruolo;
+	private String email;
 
-	public Dipendente(String matricola, String nome, String cognome, String password, String ruolo, String numTelefono) {
+	public Dipendente(String matricola, String nome, String cognome, String password, String ruolo, String numTelefono, String email) {
 		
 		this.matricola = matricola;
 		this.nome = nome;
@@ -24,6 +25,7 @@ public class Dipendente {
 		this.password = password;
 		this.ruolo = ruolo;
 		this.numTelefono = numTelefono;
+		this.email = email;
 	}
 
 	// costruttore utilizzato da eventuale query
@@ -35,6 +37,7 @@ public class Dipendente {
 		this.password = rs.getString("password");
 		this.ruolo = rs.getString("ruolo");
 		this.numTelefono = rs.getString("numTelefono");
+		this.email = rs.getString("email");
 	}
 
 	//Esegue la query per ottenere il dipendente con la matricola inserita
@@ -121,5 +124,13 @@ public class Dipendente {
 
 	public void setNumTelefono(String numTelefono) {
 		this.numTelefono = numTelefono;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

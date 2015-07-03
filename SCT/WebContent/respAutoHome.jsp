@@ -3,6 +3,10 @@
 	import="java.util.*" import="java.sql.*"%>
 <%
 	String matricola = "";
+	String nome = "";
+	String cognome = "";
+	String ruolo = "";
+	String numTelefono = "";
 	if( session.getAttribute("utenteAttivo") == null || session.getAttribute("utenteAttivo").equals("")){
 		response.sendRedirect("loginAtteso.jsp");
 	}else{
@@ -20,8 +24,6 @@
 <title>Home Responsabile Auto</title>
 </head>
 	<link rel="stylesheet" href="resources/style.css" type="text/css">
-
-<title>Home Responsabile Auto</title>
 
 <div id="wrapper">
     <div id="header">
@@ -67,7 +69,7 @@
 
 				<tr>
 						<td> <a href="infoAuto.jsp?targa=<%=a.getTarga()%>&codResp=<%=a.getCodResponsabile()%>&mod=<%=a.getModello()%>&lat=<%=a.getLatitudine()%>&long=<%=a.getLongitudine()%>&modal=<%=a.getModalita()%>&vel=<%=a.getVelocita()%>"> <%=a.getTarga()%> </a></td>
-						<td> <a href="infoDip.jsp"> <%=a.getCodResponsabile()%></a></td>
+						<td> <%=a.getCodResponsabile()%> </td>
 					
 				</tr>
 				<%
@@ -82,8 +84,30 @@
             <body>
 				<br>
 	    			<h2>Benvenuto nella tua Home <%=matricola%></h2>
-				</br>
-	    		
+					<br>
+					<br>
+					<%
+						Dipendente dip = Dipendente.getDipendente(matricola);
+					%>
+					<br>
+	    			Nome :	<%=dip.getNome()%>
+	    			<br>
+		    		<br>
+	  				Cognome :	<%=dip.getCognome()%>
+	  				<br>
+	  				<br>
+	  				Ruolo :	   <%=dip.getRuolo()%>
+	  				<br>
+	  				<br>
+	  				Numero di Telefono :	<%=dip.getNumTelefono()%>
+	  				<br>
+	  				<br>
+	  				e-Mail :	<%=dip.getEmail()%>
+	  				<br>
+	  				<br>
+	  				<br>
+	  				<br>
+	  				<a href="video.jsp"> Modifica</a>
     		</body>
         </div>
     </div>

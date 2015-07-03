@@ -4,21 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Permesso Negato</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<h1>SafeCar</h1>
-	<br>
-	<h3>Errore: non hai i permessi necessari</h3>
-	<%
-		session.invalidate();
-	%>
-	<br>
-	La tua sessione è stata invalidata
-	<br>
-	<br>
-	<form method="link" action="login.jsp">
-		<input type="submit" value="Torna al Login">
-	</form> 
+
 </body>
 </html>

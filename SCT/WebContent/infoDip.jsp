@@ -3,10 +3,16 @@
 	import="java.util.*" import="java.sql.*"%>
 <%
 	String matricola = "";
+	String dipSelezionato = "";
+	String nome = "";
+	String cognome = "";
+	String ruolo = "";
+	String numTelefono = "";
 	if( session.getAttribute("utenteAttivo") == null || session.getAttribute("utenteAttivo").equals("")){
 		response.sendRedirect("loginAtteso.jsp");
 	}else{
 		matricola = session.getAttribute("utenteAttivo").toString();
+		dipSelezionato = request.getParameter( "dipSel" );
 	}
 %>
 
@@ -14,11 +20,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Home Admin</title>
+<title>Informazioni Dipendente</title>
 </head>
 	<link rel="stylesheet" href="resources/style.css" type="text/css">
-
-<title>Home Admin</title>
 
 <div id="wrapper">
     <div id="header">
@@ -57,14 +61,15 @@
 			
 				<%
 				List<Auto> listaAuto = Auto.getListaAuto();
+				Dipendente dip = Dipendente.getDipendente(dipSelezionato);
 			%>
 				<%
 				for (Auto a : listaAuto) {
 			%>
 
 				<tr>
-						<td><%=a.getTarga()%></td>
-						<td><%=a.getCodResponsabile()%></td>
+						<td> <a href="infoAuto.jsp?targa=<%=a.getTarga()%>&codResp=<%=a.getCodResponsabile()%>&mod=<%=a.getModello()%>&lat=<%=a.getLatitudine()%>&long=<%=a.getLongitudine()%>&modal=<%=a.getModalita()%>&vel=<%=a.getVelocita()%>"> <%=a.getTarga()%> </a></td>
+						<td> <a href="infoDip.jsp?dipSel=<%=a.getCodResponsabile()%>"> <%=a.getCodResponsabile()%></a></td>
 					
 				</tr>
 				<%
@@ -78,9 +83,28 @@
         <div id="main">
             <body>
 				<br>
-	    			<h2>Benvenuto nella Admin Home <%=matricola%></h2>
-				</br>
-	    		
+	    			<h2>Informazioni Dipendente: <%=dipSelezionato%></h2>
+				<br>
+					<br>
+					<br>
+	    			Nome :	<%=dip.getNome()%>
+	    			<br>
+		    		<br>
+	  				Cognome :	<%=dip.getCognome()%>
+	  				<br>
+	  				<br>
+	  				Ruolo :	   <%=dip.getRuolo()%>
+	  				<br>
+	  				<br>
+	  				Numero di Telefono :	<%=dip.getNumTelefono()%>
+	  				<br>
+	  				<br>
+	  				e-Mail :	<%=dip.getEmail()%>
+	  				<br>
+	  				<br>
+	  				<br>
+	  				<br>
+	  				<td> <a href="video.jsp"> Modifica</a></td>
     		</body>
         </div>
     </div>

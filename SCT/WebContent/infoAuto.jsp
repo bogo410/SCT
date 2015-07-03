@@ -14,8 +14,12 @@
 		response.sendRedirect("loginAtteso.jsp");
 	}else{
 		matricola = session.getAttribute("utenteAttivo").toString();
-		targa = request.getParameter( "targa" );
 		matricolaResp = request.getParameter( "codResp" );
+		//se l'utente attivo non è un admin e non corrisponde al responsabile dell'auto selezionat ritorna errore 
+		if( (!((Auto.getRuoloUtente(matricola).equals("Admin")) || (Auto.getRuoloUtente(matricola).equals("Admin Esterno")))) && !matricola.equals(matricolaResp) ){
+			response.sendRedirect("permessoNegato.jsp");
+		}
+		targa = request.getParameter( "targa" );
 		modello = request.getParameter( "mod" );
 		latitudine = request.getParameter( "lat" );
 		longitudine = request.getParameter( "long" );
@@ -30,8 +34,6 @@
 <title>Informazioni Auto</title>
 </head>
 	<link rel="stylesheet" href="resources/style.css" type="text/css">
-
-<title>Informazioni Auto</title>
 
 <div id="wrapper">
     <div id="header">
@@ -78,13 +80,22 @@
 				}
 			%>
 			<%	
-				for (Auto a : listaAuto) {
+				for(Auto a : listaAuto) {
 			%>
 
 				<tr>
 						<td> <a href="infoAuto.jsp?targa=<%=a.getTarga()%>&codResp=<%=a.getCodResponsabile()%>&mod=<%=a.getModello()%>&lat=<%=a.getLatitudine()%>&long=<%=a.getLongitudine()%>&modal=<%=a.getModalita()%>&vel=<%=a.getVelocita()%>"> <%=a.getTarga()%> </a></td>
-						<td> <a href="infoDip.jsp"> <%=a.getCodResponsabile()%></a></td>
-					
+						<%	
+							if( (Auto.getRuoloUtente(matricola)).equals("Admin") || (Auto.getRuoloUtente(matricola)).equals("Admin Esterno") ) {
+						%>
+						<td> <a href="infoDip.jsp?dipSel=<%=a.getCodResponsabile()%>"> <%=a.getCodResponsabile()%></a></td>
+						<%	
+							}else{
+						%>
+						<td> <a href="respAutoHome.jsp"> <%=a.getCodResponsabile()%></a></td>
+						<%	
+							}
+						%>
 				</tr>
 				<%
 				}
@@ -105,10 +116,10 @@
 	    		Modello :	<%=modello%>
 	    		<br>
 	    		<br>
-  				Latitudine :	<%=latitudine%>
+  				Latitudine :	<td> <a href="posizione.jsp"> <%=latitudine%></a></td>
   				<br>
   				<br>
-  				Longitudine :	<%=longitudine%>
+  				Longitudine :	<td> <a href="posizione.jsp"> <%=longitudine%></a></td>
   				<br>
   				<br>
   				Modalita :	<%=modalita%>
@@ -116,6 +127,10 @@
   				<br>
   				Velocita :	<%=velocita%>
   				<br>
+  				<br>
+  				<br>
+  				<br>
+  				<td> <a href="video.jsp"> Video</a></td>
     		</body>
         </div>
     </div>
