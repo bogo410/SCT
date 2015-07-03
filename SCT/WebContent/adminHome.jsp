@@ -1,9 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="login.*" import="relazioni.*"
 	import="java.util.*" import="java.sql.*"%>
+	
 <%
-String matricola = "";
-matricola = session.getAttribute("utenteAttivo").toString();
+	String matricola = "";
+	if( session.getAttribute("utenteAttivo") == null || session.getAttribute("utenteAttivo").equals("")){
+		response.sendRedirect("loginAtteso.jsp");
+	}else{
+		matricola = session.getAttribute("utenteAttivo").toString();
+		if( !((Auto.getRuoloUtente(session.getAttribute("utenteAttivo").toString())).equals("Admin") || (Auto.getRuoloUtente(session.getAttribute("utenteAttivo").toString())).equals("Admin Esterno")) ){
+	}
+		response.sendRedirect("permessoNegato.jsp");
+	}
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -19,10 +27,25 @@ matricola = session.getAttribute("utenteAttivo").toString();
 <div id="wrapper">
     <div id="header">
 		<div id="header-content">
-			SafeCar
+			<%
+				//se l'utente è un admin ritorna alla home dell'admin
+				//altrimenti ritorna alla home del responsabile
+				if( (Auto.getRuoloUtente(matricola)).equals("Responsabile Auto") ){ 
+					
+					%>
+					<a href="respAutoHome.jsp"> SafeCar</a>
+			<%	
+				}else if((Auto.getRuoloUtente(matricola)).equals("Admin") || (Auto.getRuoloUtente(matricola)).equals("Admin Esterno") ){
+					%>
+					<a href="adminHome.jsp"> SafeCar</a>
+			<%	
+				}
+			%>
 		</div>
 		<div id="Logout">
-			<a href="logout.jsp"><%=matricola%>, effettua il logout</a>
+			<form method="link" action="logout.jsp">
+				<input type="submit" value="Logout <%=matricola%>">
+			</form> 
 		</div>
 	</div>
     <div id="content">
@@ -57,12 +80,10 @@ matricola = session.getAttribute("utenteAttivo").toString();
         </div>
         
         <div id="main">
-            <body>
 				<br>
 	    			<h2>Benvenuto nella Admin Home <%=matricola%></h2>
-				</br>
+				<br>
 	    		
-    		</body>
         </div>
     </div>
     <div class="push"></div>

@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Logout</title>
+<title>Permesso Negato</title>
 </head>
 <body>
 	<h1>SafeCar</h1>
 	<br>
-	<h3>Hai effettuato il logout</h3>
+	<h3>Errore: devi prima effettuare il Login</h3>
 	<%
 		session.invalidate();
 	%>

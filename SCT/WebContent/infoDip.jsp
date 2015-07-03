@@ -17,9 +17,28 @@ matricola = session.getAttribute("utenteAttivo").toString();
 <title>Home Admin</title>
 
 <div id="wrapper">
-    <div id="header"><div id="header-content">SafeCar</div></div>
+    <div id="header">
+    	<div id="header-content">
+			<%
+				//se l'utente è un admin ritorna alla home dell'admin
+				//altrimenti ritorna alla home del responsabile
+				if( (Auto.getRuoloUtente(matricola)).equals("Responsabile Auto") ){ 
+					
+					%>
+					<a href="respAutoHome.jsp"> SafeCar</a>
+			<%	
+				}else if((Auto.getRuoloUtente(matricola)).equals("Admin") || (Auto.getRuoloUtente(matricola)).equals("Admin Esterno")){
+					%>
+					<a href="adminHome.jsp"> SafeCar</a>
+			<%	
+				}
+			%>
+		</div>
+	</div>
     <div id="Logout">
-		<a href="logout.jsp"><%=matricola%>, effettua il logout</a>
+		<form method="link" action="logout.jsp">
+			<input type="submit" value="Logout <%=matricola%>">
+		</form> 
 	</div>
     <div id="content">
         <div id="sidebar">
