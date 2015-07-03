@@ -66,7 +66,11 @@ html, body {
 	padding: 8px;
     font-size: 130%;
 }
-
+#map-view {
+		margin:0 auto;
+        width: 500px;
+        height: 400px;
+}
 #Logout {
 	position: relative;
 	text-align: right;

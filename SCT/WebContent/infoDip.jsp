@@ -8,12 +8,14 @@
 	String cognome = "";
 	String ruolo = "";
 	String numTelefono = "";
-	if( session.getAttribute("utenteAttivo") == null || session.getAttribute("utenteAttivo").equals("")){
+	if( session.getAttribute("utenteAttivo") == null || session.getAttribute("utenteAttivo").equals("") ){
 		response.sendRedirect("loginAtteso.jsp");
 	}else{
 		matricola = session.getAttribute("utenteAttivo").toString();
 		dipSelezionato = request.getParameter( "dipSel" );
-	}
+		if( !((Auto.getRuoloUtente(matricola).equals("Admin")) || (Auto.getRuoloUtente(matricola).equals("Admin Esterno"))) ){
+			response.sendRedirect("permessoNegato.jsp");
+		}
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -103,10 +105,12 @@
 	  				<br>
 	  				<br>
 	  				<br>
-	  				<br>
-	  				<td> <a href="video.jsp"> Modifica</a></td>
+	  				<br><a href="video.jsp"> Modifica</a>
     		</body>
         </div>
+        <%
+        }
+	%>
     </div>
     <div class="push"></div>
 </div>

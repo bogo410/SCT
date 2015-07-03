@@ -32,6 +32,53 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Informazioni Auto</title>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+var geocoder;
+var map;
+var infowindow = new google.maps.InfoWindow();
+var marker;
+function initialize() {
+  geocoder = new google.maps.Geocoder();
+
+  var lat = parseFloat(document.getElementById('hiddenLat').value);
+  var lng = parseFloat(document.getElementById('hiddenLong').value);
+  var latlng = new google.maps.LatLng(lat, lng);
+  var mapOptions = {
+    zoom: 8,
+    center: latlng,
+    mapTypeId: 'roadmap'
+  }
+  map = new google.maps.Map(document.getElementById('map-view'), mapOptions);
+
+  codeLatLng();
+}
+
+function codeLatLng() {
+	  var lat = parseFloat(document.getElementById('hiddenLat').value);
+	  var lng = parseFloat(document.getElementById('hiddenLong').value);
+	  var latlng = new google.maps.LatLng(lat, lng);
+	  geocoder.geocode({'latLng': latlng}, function(results, status) {
+	    if (status == google.maps.GeocoderStatus.OK) {
+	      if (results[1]) {
+	        map.setZoom(11);
+	        marker = new google.maps.Marker({
+	            position: latlng,
+	            map: map
+	        });
+	        infowindow.setContent(results[1].formatted_address);
+	        infowindow.open(map, marker);
+	      } else {
+	    	  window.alert("No results found");
+	      }
+	    } else {
+	    	window.alert("Geocoder failed due to: " + status);
+	    }
+	  });
+	}
+
+	google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 </head>
 	<link rel="stylesheet" href="resources/style.css" type="text/css">
 
@@ -114,24 +161,24 @@
 				<br>
 				<br>
 	    		Modello :	<%=modello%>
-	    		<br>
-	    		<br>
-  				Latitudine :	<td> <a href="posizione.jsp"> <%=latitudine%></a></td>
   				<br>
-  				<br>
-  				Longitudine :	<td> <a href="posizione.jsp"> <%=longitudine%></a></td>
-  				<br>
+  				<input type="hidden" name="hiddenLat" id="hiddenLat" value="<%=latitudine%>">
+				 <input type="hidden" name="hiddenLong" id="hiddenLong" value="<%=longitudine%>">
   				<br>
   				Modalita :	<%=modalita%>
   				<br>
   				<br>
   				Velocita :	<%=velocita%>
   				<br>
-  				<br>
-  				<br>
-  				<br>
-  				<td> <a href="video.jsp"> Video</a></td>
+    			<br>
+  				<br><a href="video.jsp"> Video</a>
     		</body>
+    		<br>
+  				<br>
+  				<br>
+    			<div id="map-view"></div>
+    			<br>
+    			<br>
         </div>
     </div>
     <div class="push"></div>
