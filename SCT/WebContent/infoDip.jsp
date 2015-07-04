@@ -46,7 +46,7 @@
 		</div>
 	</div>
     <div id="Logout">
-		<form method="link" action="logout.jsp">
+		<form action="logout.jsp">
 			<input type="submit" value="Logout <%=matricola%>">
 		</form> 
 	</div>
@@ -83,7 +83,6 @@
         </div>
         
         <div id="main">
-            <body>
 				<br>
 	    			<h2>Informazioni Dipendente: <%=dipSelezionato%></h2>
 				<br>
@@ -106,7 +105,6 @@
 	  				<br>
 	  				<br>
 	  				<br><a href="video.jsp"> Modifica</a>
-    		</body>
         </div>
         <%
         }

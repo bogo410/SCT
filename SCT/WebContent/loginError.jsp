@@ -11,7 +11,7 @@
 	<br>
 	<h2>Matricola e/o password errati</h2>
 	<hr>
-	<form method="link" action="login.jsp">
+	<form action="login.jsp">
 		<input type="submit" value="Torna al Login">
 	</form> 
 	<hr>

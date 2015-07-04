@@ -13,8 +13,8 @@
 	<br>
 	<h2>LOGIN</h2>
 	<form action="Login" method="POST">
-		<br /> Matricola: <input type="text" name="matricola" required placeholder="Inserire matricola"> <br> 
-		<br /> Password: <input type="password" name="password" required placeholder="Inserire password"> <br>
+		<br /> Matricola: <input type="text" name="matricola" placeholder="Inserire matricola"> <br> 
+		<br /> Password: <input type="password" name="password" placeholder="Inserire password"> <br>
 		<br /> <input type="submit" value="Log in">
 	</form>
 </body>

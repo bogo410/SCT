@@ -42,7 +42,7 @@
 			%>
 		</div>
 		<div id="Logout">
-			<form method="link" action="logout.jsp">
+			<form action="logout.jsp">
 				<input type="submit" value="Logout <%=matricola%>">
 			</form> 
 		</div>

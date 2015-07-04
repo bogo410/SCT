@@ -101,7 +101,7 @@ function codeLatLng() {
 			%>
 		</div>
 		<div id="Logout">
-		<form method="link" action="logout.jsp">
+		<form action="logout.jsp">
 			<input type="submit" value="Logout <%=matricola%>">
 		</form> 
 	</div>
@@ -154,7 +154,6 @@ function codeLatLng() {
         </div>
         
         <div id="main">
-            <body>
 				<br>
 	    			<h2>Informazioni Auto </h2>
 	    			<h3>Targa: <%=targa%>, Responsabile: <%=matricolaResp%></h3>
@@ -163,7 +162,7 @@ function codeLatLng() {
 	    		Modello :	<%=modello%>
   				<br>
   				<input type="hidden" name="hiddenLat" id="hiddenLat" value="<%=latitudine%>">
-				 <input type="hidden" name="hiddenLong" id="hiddenLong" value="<%=longitudine%>">
+				<input type="hidden" name="hiddenLong" id="hiddenLong" value="<%=longitudine%>">
   				<br>
   				Modalita :	<%=modalita%>
   				<br>
@@ -172,8 +171,7 @@ function codeLatLng() {
   				<br>
     			<br>
   				<br><a href="video.jsp"> Video</a>
-    		</body>
-    		<br>
+    			<br>
   				<br>
   				<br>
     			<div id="map-view"></div>

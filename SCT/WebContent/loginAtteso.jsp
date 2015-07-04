@@ -13,7 +13,7 @@
 	<%
 		session.invalidate();
 	%>
-	<form method="link" action="login.jsp">
+	<form action="login.jsp">
 		<input type="submit" value="Torna al Login">
 	</form> 
 </body>
