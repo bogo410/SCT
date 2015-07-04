@@ -11,8 +11,6 @@ public class Auto {
 	
 	private String targa;
 	private String modello;
-	private float latitudine;
-	private float longitudine;
 	private String modalita;
 	private int velocita;
 	private String codResponsabile;
@@ -21,8 +19,6 @@ public class Auto {
 		
 		this.targa = targa;
 		this.modello = modello;
-		this.latitudine = latitudine;
-		this.longitudine = longitudine;
 		this.modalita = modalita;
 		this.velocita = velocita;
 		this.codResponsabile = codResponsabile;
@@ -33,8 +29,6 @@ public class Auto {
 		
 		this.targa = rs.getString("targa");
 		this.modello = rs.getString("modello");
-		this.latitudine = rs.getFloat("latitudine");
-		this.longitudine = rs.getFloat("longitudine");
 		this.modalita = rs.getString("modalita");
 		this.velocita = rs.getInt("velocita");
 		this.codResponsabile = rs.getString("codResponsabile");
@@ -52,7 +46,7 @@ public class Auto {
 			parametri[0] = Targa;
 			ResultSet rs = dsc.eseguiQuery(query, parametri);
 			System.out.print("----------" + query + Targa + "----------");
-			while (rs.next())
+			while (rs.next()) 											//if al posto del while?????????????????????????
 				res = new Auto(rs);
 		} catch (SQLException e) {
 					
@@ -145,22 +139,6 @@ public class Auto {
 
 	public void setModello(String modello) {
 		this.modello = modello;
-	}
-
-	public float getLatitudine() {
-		return latitudine;
-	}
-
-	public void setLatitudine(float latitudine) {
-		this.latitudine = latitudine;
-	}
-
-	public float getLongitudine() {
-		return longitudine;
-	}
-
-	public void setLongitudine(float longitudine) {
-		this.longitudine = longitudine;
 	}
 
 	public String getModalita() {

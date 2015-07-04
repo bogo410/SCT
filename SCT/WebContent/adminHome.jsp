@@ -63,10 +63,11 @@
 			%>
 				<%
 				for (Auto a : listaAuto) {
+					Posizione pos = Posizione.getPosizioneAttuale(a.getTarga());
 			%>
 
 				<tr>
-						<td> <a href="infoAuto.jsp?targa=<%=a.getTarga()%>&codResp=<%=a.getCodResponsabile()%>&mod=<%=a.getModello()%>&lat=<%=a.getLatitudine()%>&long=<%=a.getLongitudine()%>&modal=<%=a.getModalita()%>&vel=<%=a.getVelocita()%>"> <%=a.getTarga()%> </a></td>
+						<td> <a href="infoAuto.jsp?targa=<%=a.getTarga()%>&codResp=<%=a.getCodResponsabile()%>&mod=<%=a.getModello()%>&lat=<%=pos.getLatitudine()%>&long=<%=pos.getLongitudine()%>&modal=<%=a.getModalita()%>&vel=<%=a.getVelocita()%>"> <%=a.getTarga()%> </a></td>
 						<td> <a href="infoDip.jsp?dipSel=<%=a.getCodResponsabile()%>"> <%=a.getCodResponsabile()%></a></td>
 					
 				</tr>
@@ -104,7 +105,7 @@
 	  				<br>
 	  				<br>
 	  				<br>
-	  				<a href="video.jsp"> Modifica</a>
+	  				<a href="modifica.jsp"> Modifica</a>
 	    		
         </div>
     </div>
