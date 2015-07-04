@@ -178,6 +178,7 @@ function codeLatLng() {
     			<div id="map-view"></div>
     			<br>
     			<br>
+    			<a href="tracking.jsp?auto=<%=targa%>"> Tracking</a> 
         </div>
     </div>
     <div class="push"></div>

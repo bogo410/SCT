@@ -58,7 +58,32 @@ public class Dipendente {
 		}
 		return res;
 	}
-
+	
+	//Esegue la query per ottenere il dipendente responsabile dell'auto con la targa inserita
+	public static String getResponsabile(String targa) {
+			
+		String res = "";
+		try {
+			DataSourceConnection dsc = DataSourceConnection.getIstanza();
+			String query = "SELECT D.Matricola "
+						 + "FROM Dipendente AS D INNER JOIN Auto AS A "
+						 + "ON D.Matricola = A.CodResponsabile "
+						 + "WHERE targa = ? ";
+			Object[] parametri = new Object[1];
+			parametri[0] = targa;
+			ResultSet rs = dsc.eseguiQuery(query, parametri);
+			System.out.print("----------" + query + targa + "----------");
+			if (rs.next())
+				res = new String(rs.getString(1));;
+		} catch (SQLException e) {
+			System.out.println("Query fallita: " + e);
+		}
+		
+		System.out.println("\n\n --" + res + "-- n\n");
+		
+		return res;
+	}
+	
 	//Esegue la query per ottenere tutti i dipendenti 
 	public static List<Dipendente> getDipendenti() {
 		
