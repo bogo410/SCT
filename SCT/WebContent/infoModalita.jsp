@@ -5,6 +5,7 @@
 	
 	String matricola = "";
 	String autoSelezionata = "";
+	String modalita = "";
 	if( session.getAttribute("utenteAttivo") == null || session.getAttribute("utenteAttivo").equals("") ){
 		response.sendRedirect("loginAtteso.jsp");
 	}else{
@@ -13,13 +14,14 @@
 		if( !((Auto.getRuoloUtente(matricola).equals("Admin")) || (Auto.getRuoloUtente(matricola).equals("Admin Esterno"))) && !matricola.equals(Dipendente.getResponsabile(autoSelezionata))){
 			response.sendRedirect("permessoNegato.jsp");
 		}
+		modalita = request.getParameter( "modal" );
 	}
 		%>
 		
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<link rel="stylesheet" href="resources/style.css" type="text/css">
-<title>Tracking</title>
+<title>Informazioni Modalità</title>
 
 <div id="wrapper">
     <div id="header">
@@ -48,26 +50,21 @@
     <div id="content">
         
 				<body>
-					<h2> Tracking Auto :  <%=autoSelezionata%></h2>
+					<h2> Informazioni Modalità dell'Auto:  <%=autoSelezionata%></h2>
+					<h3> Modalità attuale: <%=modalita%></h3>
+					<br>
+					<%
+						//se la modalità è "Sending alarm" appare il menù di gestione dell'allarme
+						if(modalita.equals("Sending alarm")){
+					%>
+					<h4> Gestione allarme: </h4>
+					 &nbsp;&nbsp;&nbsp; - <a href="tracking.jsp"> Contatta le Autorità </a> (ora Tracking)
+					<br>
+					 &nbsp;&nbsp;&nbsp; - <a href="tracking.jsp"> Contatta il Responsabile </a> (ora Tracking)
+					
 					<%	
-					List<Posizione> listaPosizioni = Posizione.getListaPosizioni(autoSelezionata);
-					int i=0;
-					for(Posizione pos : listaPosizioni) {
-						if(i++==0){			
-							%>
-							&nbsp;&nbsp;&nbsp; Latitudine: <%=pos.getLatitudine() %>&nbsp; Longitudine: <%=pos.getLongitudine() %>&nbsp; Data: <%=pos.getData() %>&nbsp; Ora: <%=pos.getOra() %> &nbsp; <==ATTUALE 
-							<br>
-							<br>
-					<%
-						}else{
-							%>
-						&nbsp;&nbsp;&nbsp; Latitudine: <%=pos.getLatitudine() %>&nbsp; Longitudine: <%=pos.getLongitudine() %>&nbsp; Data: <%=pos.getData() %>&nbsp; Ora: <%=pos.getOra() %>
-						<br>
-						<br>
-					<%
 						}
-					}
-						%>
+					%>
 				</body>	
     
     </div>

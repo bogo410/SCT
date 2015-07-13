@@ -165,7 +165,7 @@ function codeLatLng() {
   				<input type="hidden" name="hiddenLat" id="hiddenLat" value="<%=latitudine%>">
 				<input type="hidden" name="hiddenLong" id="hiddenLong" value="<%=longitudine%>">
   				<br>
-  				Modalita :	<a href="infoModalita.jsp?auto=<%=targa%>&modal=<%=modalita%>"> <%=modalita%></a>
+  				Modalita :	<%=modalita%>
   				<br>
   				<br>
   				Velocita :	<%=velocita%>

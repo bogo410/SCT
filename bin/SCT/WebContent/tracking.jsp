@@ -48,7 +48,7 @@
     <div id="content">
         
 				<body>
-					<h2> Tracking Auto :  <%=autoSelezionata%></h2>
+					<h3> Tracking Auto :  <%=autoSelezionata%></h3>
 					<%	
 					List<Posizione> listaPosizioni = Posizione.getListaPosizioni(autoSelezionata);
 					int i=0;
