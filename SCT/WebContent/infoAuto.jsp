@@ -6,10 +6,10 @@
 	String targa = "";
 	String matricolaResp = "";
 	String modello = "";
-	String latitudine = "";
-	String longitudine = "";
+	float latitudine = 0;
+	float longitudine = 0;
 	String modalita = "";
-	String velocita = "";
+	float velocita = 0;
 	if( session.getAttribute("utenteAttivo") == null || session.getAttribute("utenteAttivo").equals("")){
 		response.sendRedirect("loginAtteso.jsp");
 	}else{
@@ -21,10 +21,7 @@
 		}
 		targa = request.getParameter( "targa" );
 		modello = request.getParameter( "mod" );
-		latitudine = request.getParameter( "lat" );
-		longitudine = request.getParameter( "long" );
 		modalita = request.getParameter( "modal" );
-		velocita = request.getParameter( "vel" );
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -159,6 +156,19 @@ function codeLatLng() {
 	    			<h2>Informazioni Auto </h2>
 	    			<h3>Targa: <%=targa%>, Responsabile: <%=matricolaResp%></h3>
 				<br>
+				<%		
+				//auto refresh dopo 1 seconds
+				response.setIntHeader("Refresh", 5);
+				
+				//si salva le info dell'auto in questione con la relativa posizione
+				Auto a = Auto.getAuto(targa);
+				Posizione p = Posizione.getPosizioneAttuale(targa);
+				
+				latitudine = p.getLatitudine();
+				longitudine = p.getLongitudine();
+				modalita = a.getModalita();
+				velocita = a.getVelocita();
+			%>
 				<br>
 	    		Modello :	<%=modello%>
   				<br>
@@ -182,6 +192,7 @@ function codeLatLng() {
     			<br>
     			<br>
         </div>
+        
     </div>
     <div class="push"></div>
 </div>

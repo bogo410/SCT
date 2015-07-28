@@ -5,8 +5,8 @@
 	
 	String matricola = "";
 	String autoSelezionata = "";
-	String targa = "";
 	String modalita = "";
+	String targa = "";
 	if( session.getAttribute("utenteAttivo") == null || session.getAttribute("utenteAttivo").equals("") ){
 		response.sendRedirect("loginAtteso.jsp");
 	}else{
@@ -15,15 +15,15 @@
 		if( !((Auto.getRuoloUtente(matricola).equals("Admin")) || (Auto.getRuoloUtente(matricola).equals("Admin Esterno"))) && !matricola.equals(Dipendente.getResponsabile(autoSelezionata))){
 			response.sendRedirect("permessoNegato.jsp");
 		}
-		targa = request.getParameter( "auto" );
 		modalita = request.getParameter( "modal" );
+		targa = request.getParameter( "auto" );
 	}
 		%>
 		
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<link rel="stylesheet" href="resources/style.css" type="text/css">
-<title>Informazioni Modalità</title>
+<title>Numeri di Emergenza</title>
 
 <div id="wrapper">
     <div id="header">
@@ -52,35 +52,18 @@
     <div id="content">
         
 				<body>
-					<h2> Informazioni Modalità dell'Auto:  <%=autoSelezionata%></h2>
-					<h3> Modalità attuale: <%=modalita%></h3>
-					<br>
 					<%
-						//se la modalità è "Sending alarm" appare il menù di gestione dell'allarme specifico
-						if(modalita.equals("Sending alarm")){
-					%>
-					<h4> Gestione allarme: </h4>
-					 &nbsp;&nbsp;&nbsp; - <a href="allarmeRicevuto.jsp?auto=<%=targa%>"> Contatta le Autorità e imposta la modalità "Alarm received"</a>
-					<br>
-					 &nbsp;&nbsp;&nbsp; - <a href="contattiResp.jsp?auto=<%=targa%>"> Contatta il Responsabile</a>
-					<br>
-					 &nbsp;&nbsp;&nbsp; - <a href="modSafe.jsp?auto=<%=targa%>"> Reimposta la modalità "Safe"</a>
-					<%	
-						}
+						Auto a = Auto.getAuto(targa);
+						a.updateModalita("Alarm received");
 					%>
 					
-					<%
-						//se la modalità è "Alarm received" appare il menù di gestione dell'allarme specifico
-						if(modalita.equals("Alarm received")){
-					%>
-					<h4> Gestione allarme: </h4>
-					 &nbsp;&nbsp;&nbsp; - <a href="contattiResp.jsp?auto=<%=targa%>"> Contatta il Responsabile</a>
+					<h2>E' stata impostata la modalità "Alarm received" </h2>
+					<h2> Numeri di Emergenza </h2>
+					<h3>Per assistenza immediata in Italia chiamare:</h3> 
+					<h3>- Carabinieri : 112</h3> 
+					<h3>- Polizia : 113 </h3>
+					<h3>- Vigili del fuoco : 115  </h3> 
 					<br>
-					 &nbsp;&nbsp;&nbsp; - <a href="modSafe.jsp?auto=<%=targa%>"> Reimposta la modalità "Safe"</a>
-					<br>
-					<%	
-						}
-					%>
 				</body>	
     
     </div>

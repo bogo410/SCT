@@ -59,7 +59,7 @@ public class Dipendente {
 		return res;
 	}
 	
-	//Esegue la query per ottenere il dipendente responsabile dell'auto con la targa inserita
+	//Esegue la query per ottenere la stringa del dipendente responsabile dell'auto con la targa inserita
 	public static String getResponsabile(String targa) {
 			
 		String res = "";
@@ -74,13 +74,38 @@ public class Dipendente {
 			ResultSet rs = dsc.eseguiQuery(query, parametri);
 			System.out.print("----------" + query + targa + "----------");
 			if (rs.next())
-				res = new String(rs.getString(1));;
+				res = new String(rs.getString(1));
 		} catch (SQLException e) {
 			System.out.println("Query fallita: " + e);
 		}
 		
 		System.out.println("\n\n --" + res + "-- n\n");
 		
+		return res;
+	}
+	
+	//Esegue la query per ottenere il dipendente responsabile dell'auto con la targa inserita
+	public static Dipendente getDipResponsabile(String targa) {
+			
+		Dipendente res = null;
+		try {
+			DataSourceConnection dsc = DataSourceConnection.getIstanza();
+			String query = "SELECT * "
+						 + "FROM Dipendente AS D INNER JOIN Auto AS A "
+						 + "ON D.Matricola = A.CodResponsabile "
+						 + "WHERE targa = ? ";
+			Object[] parametri = new Object[1];
+			parametri[0] = targa;
+			ResultSet rs = dsc.eseguiQuery(query, parametri);
+			System.out.print("----------" + query + targa + "----------");
+			if (rs.next())
+				res = new Dipendente(rs);
+		} catch (SQLException e) {
+			System.out.println("Query fallita: " + e);
+		}
+			
+		System.out.println("\n\n --" + res + "-- \n\n");
+			
 		return res;
 	}
 	

@@ -35,8 +35,8 @@
 			<%	
 				}else if((Auto.getRuoloUtente(matricola)).equals("Admin") || (Auto.getRuoloUtente(matricola)).equals("Admin Esterno") ){
 					%>
-					<!--  <a href="adminHome.jsp"> SafeCar</a> -->
-					<a href="adminHome.jsp"> <img src="templates/logo.png" alt="logo" /></a>
+					<a href="adminHome.jsp"> SafeCar</a>
+					<!--  <a href="adminHome.jsp"> <img src="templates/logo.png" alt="logo" /></a> -->
 			<%	
 				}
 			%>

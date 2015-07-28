@@ -15,15 +15,15 @@
 		if( !((Auto.getRuoloUtente(matricola).equals("Admin")) || (Auto.getRuoloUtente(matricola).equals("Admin Esterno"))) && !matricola.equals(Dipendente.getResponsabile(autoSelezionata))){
 			response.sendRedirect("permessoNegato.jsp");
 		}
-		targa = request.getParameter( "auto" );
 		modalita = request.getParameter( "modal" );
+		targa = request.getParameter( "auto" );
 	}
 		%>
 		
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<link rel="stylesheet" href="resources/style.css" type="text/css">
-<title>Informazioni Modalità</title>
+<title>Modalità Safe Impostata</title>
 
 <div id="wrapper">
     <div id="header">
@@ -52,35 +52,12 @@
     <div id="content">
         
 				<body>
-					<h2> Informazioni Modalità dell'Auto:  <%=autoSelezionata%></h2>
-					<h3> Modalità attuale: <%=modalita%></h3>
-					<br>
 					<%
-						//se la modalità è "Sending alarm" appare il menù di gestione dell'allarme specifico
-						if(modalita.equals("Sending alarm")){
+						Auto a = Auto.getAuto(targa);
+						a.updateModalita("Safe");
 					%>
-					<h4> Gestione allarme: </h4>
-					 &nbsp;&nbsp;&nbsp; - <a href="allarmeRicevuto.jsp?auto=<%=targa%>"> Contatta le Autorità e imposta la modalità "Alarm received"</a>
-					<br>
-					 &nbsp;&nbsp;&nbsp; - <a href="contattiResp.jsp?auto=<%=targa%>"> Contatta il Responsabile</a>
-					<br>
-					 &nbsp;&nbsp;&nbsp; - <a href="modSafe.jsp?auto=<%=targa%>"> Reimposta la modalità "Safe"</a>
-					<%	
-						}
-					%>
-					
-					<%
-						//se la modalità è "Alarm received" appare il menù di gestione dell'allarme specifico
-						if(modalita.equals("Alarm received")){
-					%>
-					<h4> Gestione allarme: </h4>
-					 &nbsp;&nbsp;&nbsp; - <a href="contattiResp.jsp?auto=<%=targa%>"> Contatta il Responsabile</a>
-					<br>
-					 &nbsp;&nbsp;&nbsp; - <a href="modSafe.jsp?auto=<%=targa%>"> Reimposta la modalità "Safe"</a>
-					<br>
-					<%	
-						}
-					%>
+			
+					<h2>E' stata reimpostata la modalità "Safe" </h2>
 				</body>	
     
     </div>

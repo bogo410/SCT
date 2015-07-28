@@ -123,6 +123,25 @@ public class Auto {
 		
 		return res;
 	}
+	
+	//esegue l'update della modalità con la stringa passata
+	public void updateModalita(String nuovaModalita){
+		try {
+			
+			DataSourceConnection dsc = DataSourceConnection.getIstanza();
+			String query = "UPDATE Auto "
+						 + "SET Modalita = ? "
+						 + "WHERE Targa = ? ";
+			Object[] parametri = new Object[2];
+			parametri[0] = nuovaModalita;
+			parametri[1] = this.targa;
+			dsc.updateQuery(query, parametri);
+			System.out.print("----------" + query + this.targa + nuovaModalita + "----------");
+		} catch (SQLException e) {
+					
+			System.out.println("Query fallita: " + e);
+		}
+	}
 
 	//Getters e Setters
 	public String getTarga() {
