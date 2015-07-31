@@ -109,6 +109,27 @@ public class Dipendente {
 		return res;
 	}
 	
+	//Esegue la query per ottenere l'admin
+	public static Dipendente getAdmin(){
+		Dipendente res = null;
+		try {
+			DataSourceConnection dsc = DataSourceConnection.getIstanza();
+			String query = "SELECT * "
+						 + "FROM Dipendente AS D "
+						 + "WHERE D.Ruolo = 'Admin' ";
+			ResultSet rs = dsc.eseguiQuery(query, null);
+			System.out.print("----------" + query + "----------");
+			if (rs.next())
+				res = new Dipendente(rs);
+		} catch (SQLException e) {
+			System.out.println("Query fallita: " + e);
+		}
+			
+		System.out.println("\n\n --" + res + "-- \n\n");
+			
+		return res;
+	}
+	
 	//Esegue la query per ottenere tutti i dipendenti 
 	public static List<Dipendente> getDipendenti() {
 		

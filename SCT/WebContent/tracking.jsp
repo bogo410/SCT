@@ -50,7 +50,7 @@
 				<body>
 					<h2> Tracking Auto :  <%=autoSelezionata%></h2>
 					<%	
-					//auto refresh dopo 1 seconds
+					//auto refresh dopo 1 secondo
 					response.setIntHeader("Refresh", 1);
 					
 					List<Posizione> listaPosizioni = Posizione.getListaPosizioni(autoSelezionata);

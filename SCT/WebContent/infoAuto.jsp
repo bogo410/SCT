@@ -10,6 +10,7 @@
 	float longitudine = 0;
 	String modalita = "";
 	float velocita = 0;
+	float limite = 0;
 	if( session.getAttribute("utenteAttivo") == null || session.getAttribute("utenteAttivo").equals("")){
 		response.sendRedirect("loginAtteso.jsp");
 	}else{
@@ -129,8 +130,18 @@ function codeLatLng() {
 			%>
 
 				<tr>
+<%
+						if(a.getModalita().contains("Alarm") || a.getModalita().contains("alarm") || a.getVelocita() > a.getLimite() ){
+						%>
+						<td> <a href="infoAuto.jsp?targa=<%=a.getTarga()%>&codResp=<%=a.getCodResponsabile()%>&mod=<%=a.getModello()%>&lat=<%=pos.getLatitudine()%>&long=<%=pos.getLongitudine()%>&modal=<%=a.getModalita()%>&vel=<%=a.getVelocita()%>"> <font color="red"> <%=a.getTarga()%> </font></a></td>
+						
+						<%
+						}else{
+						%>
 						<td> <a href="infoAuto.jsp?targa=<%=a.getTarga()%>&codResp=<%=a.getCodResponsabile()%>&mod=<%=a.getModello()%>&lat=<%=pos.getLatitudine()%>&long=<%=pos.getLongitudine()%>&modal=<%=a.getModalita()%>&vel=<%=a.getVelocita()%>"> <%=a.getTarga()%> </a></td>
-						<%	
+						<%
+						}
+						%>						<%	
 							if( (Auto.getRuoloUtente(matricola)).equals("Admin") || (Auto.getRuoloUtente(matricola)).equals("Admin Esterno") ) {
 						%>
 						<td> <a href="infoDip.jsp?dipSel=<%=a.getCodResponsabile()%>"> <%=a.getCodResponsabile()%></a></td>
@@ -157,8 +168,8 @@ function codeLatLng() {
 	    			<h3>Targa: <%=targa%>, Responsabile: <%=matricolaResp%></h3>
 				<br>
 				<%		
-				//auto refresh dopo 1 seconds
-				response.setIntHeader("Refresh", 5);
+				//auto refresh dopo 5 secondi
+				response.setIntHeader("Refresh", 10);
 				
 				//si salva le info dell'auto in questione con la relativa posizione
 				Auto a = Auto.getAuto(targa);
@@ -168,6 +179,7 @@ function codeLatLng() {
 				longitudine = p.getLongitudine();
 				modalita = a.getModalita();
 				velocita = a.getVelocita();
+				limite = a.getLimite();
 			%>
 				<br>
 	    		Modello :	<%=modello%>
@@ -175,13 +187,36 @@ function codeLatLng() {
   				<input type="hidden" name="hiddenLat" id="hiddenLat" value="<%=latitudine%>">
 				<input type="hidden" name="hiddenLong" id="hiddenLong" value="<%=longitudine%>">
   				<br>
+  				<%
+				if(a.getModalita().contains("Alarm") || a.getModalita().contains("alarm")){
+				%>
+  				Modalita :	<a href="infoModalita.jsp?auto=<%=targa%>&modal=<%=modalita%>"> <font color="red"> <%=modalita%></font></a>
+  				<%
+				}else{	
+  				%>
   				Modalita :	<a href="infoModalita.jsp?auto=<%=targa%>&modal=<%=modalita%>"> <%=modalita%></a>
+  				<%
+				}
+  				%>
   				<br>
   				<br>
-  				Velocita :	<%=velocita%>
+  				<%
+				if( a.getVelocita() > a.getLimite() ){
+				%>
+				Velocita :	<font color="red"> <%=velocita%> km/h </font>
+				<%
+				}else{	
+  				%>
+  				Velocita :	<%=velocita%> km/h
+  				<%
+				}
+  				%>
   				<br>
     			<br>
-  				<br><a href="video.jsp"> Video</a>
+    			Limite di velocita impostato :	<a href="modificaLimite.jsp?auto=<%=targa%>&j=ko"><%=limite%> km/h</a>
+  				<br>
+    			<br>
+  				<br><a href="video.jsp?auto=<%=targa%>"> Video</a>
     			<br>
   				<br>
   				<br>

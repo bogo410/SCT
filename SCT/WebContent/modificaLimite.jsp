@@ -5,6 +5,9 @@
 	
 	String matricola = "";
 	String autoSelezionata = "";
+	String targa = "";
+	String nuovoLimite = "";
+	String i = "";
 	if( session.getAttribute("utenteAttivo") == null || session.getAttribute("utenteAttivo").equals("") ){
 		response.sendRedirect("loginAtteso.jsp");
 	}else{
@@ -14,12 +17,15 @@
 			response.sendRedirect("permessoNegato.jsp");
 		}
 	}
+	targa = request.getParameter( "auto" );
+	i = request.getParameter( "j" );
+
 		%>
 		
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<link rel="stylesheet" href="resources/style.css" type="text/css">
-<title>Video</title>
+<title>Modifica Limite di Velocità</title>
 
 <div id="wrapper">
     <div id="header">
@@ -48,29 +54,42 @@
     <div id="content">
         
 				<body>
-					<h2> Video Auto :  <%=autoSelezionata%></h2>
+					<h2> Modifica limite Auto :  <%=autoSelezionata%></h2>
 					<%	
-					//auto refresh dopo 1 seconds
-					response.setIntHeader("Refresh", 1);
 					
-					List<Video> listaVideo = Video.getListaVideo(autoSelezionata);
-					int i=0;
-					for(Video vid : listaVideo) {
-						if(i++==0){			
+					Auto a = Auto.getAuto(targa);
 							%>
-							&nbsp;&nbsp;&nbsp; Data: <%=vid.getData() %>&nbsp; Ora: <%=vid.getOra() %>&nbsp; <a href="<%=vid.getLink() %>"> Link</a> &nbsp;&nbsp;<==ULTIMO 
 							<br>
-							<br>
-					<%
-						}else{
-							%>
-						&nbsp;&nbsp;&nbsp; Data: <%=vid.getData() %>&nbsp; Ora: <%=vid.getOra() %>&nbsp; <a href=""> Link</a>
-						<br>
-						<br>
-					<%
-						}
-					}
-						%>
+							<form action="modificaLimite.jsp?auto=<%=targa%>&j=ok" method=POST>
+								&nbsp;&nbsp;&nbsp; Nuovo limite: <input type="text" name="nuovoLimite" placeholder="Inserire nuovo limite">
+								<%
+								
+								if(i.equals("ok")){
+									%>
+								&nbsp;&nbsp;&nbsp; <input type=submit value="Salva">
+								<%
+								//se il nuovo limite è maggiore o uguale a 0
+								if( (nuovoLimite = request.getParameter("nuovoLimite")) != "" && (Integer.parseInt(nuovoLimite) >= 0) ){
+									a.setLimite( Integer.parseInt(nuovoLimite) );
+									a.updateLimite( Integer.parseInt(nuovoLimite) );
+									
+								}else {
+								%>
+								<br>
+								<br>
+								&nbsp;&nbsp;&nbsp;&nbsp;Inserire un limite di velocità valido! (>=0)
+								<%
+								}
+								}else{
+								%>
+								&nbsp;&nbsp;&nbsp; <input type=submit value="Salva">
+								<%
+								}
+								%>
+								<br>
+								<br>
+								<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Limite attuale: <%=a.getLimite()%> km/h</h3>
+							</form>
 				</body>	
     
     </div>

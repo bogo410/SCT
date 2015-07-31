@@ -58,11 +58,21 @@
 					<%
 						//se la modalità è "Sending alarm" appare il menù di gestione dell'allarme specifico
 						if(modalita.equals("Sending alarm")){
+							//se l'utente logato è un admin
+							if( (Auto.getRuoloUtente(matricola).equals("Admin"))){
 					%>
 					<h4> Gestione allarme: </h4>
-					 &nbsp;&nbsp;&nbsp; - <a href="allarmeRicevuto.jsp?auto=<%=targa%>"> Contatta le Autorità e imposta la modalità "Alarm received"</a>
-					<br>
 					 &nbsp;&nbsp;&nbsp; - <a href="contattiResp.jsp?auto=<%=targa%>"> Contatta il Responsabile</a>
+					<br>
+					<%	
+						}else{ //se l'utente è un responsabile
+					%>
+					 &nbsp;&nbsp;&nbsp; - <a href="contattiAdmin.jsp?auto=<%=targa%>"> Contatta l'Admin</a>
+					 <br>
+					<%	
+						}
+					%>
+					 &nbsp;&nbsp;&nbsp; - <a href="allarmeRicevuto.jsp?auto=<%=targa%>"> Contatta le Autorità e imposta la modalità "Alarm received"</a>					
 					<br>
 					 &nbsp;&nbsp;&nbsp; - <a href="modSafe.jsp?auto=<%=targa%>"> Reimposta la modalità "Safe"</a>
 					<%	
@@ -71,11 +81,20 @@
 					
 					<%
 						//se la modalità è "Alarm received" appare il menù di gestione dell'allarme specifico
-						if(modalita.equals("Alarm received")){
+						if(modalita.equals("Alarm received")){//se l'utente logato è un admin
+							if( (Auto.getRuoloUtente(matricola).equals("Admin"))){
 					%>
 					<h4> Gestione allarme: </h4>
 					 &nbsp;&nbsp;&nbsp; - <a href="contattiResp.jsp?auto=<%=targa%>"> Contatta il Responsabile</a>
 					<br>
+					<%	
+						}else{ //se l'utente è un responsabile
+					%>
+					 &nbsp;&nbsp;&nbsp; - <a href="contattiAdmin.jsp?auto=<%=targa%>"> Contatta l'Admin</a>
+					 <br>
+					<%	
+						}
+					%>
 					 &nbsp;&nbsp;&nbsp; - <a href="modSafe.jsp?auto=<%=targa%>"> Reimposta la modalità "Safe"</a>
 					<br>
 					<%	

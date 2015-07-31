@@ -14,7 +14,7 @@ public class Posizione{
 	private String ora;
 	private String auto;
 
-	public Posizione(float latitudine, float longitudine, String data, String ora){
+	public Posizione(float latitudine, float longitudine, String data, String ora, String auto){
 	
 	this.latitudine = latitudine;
 	this.longitudine = longitudine;
@@ -32,15 +32,6 @@ public class Posizione{
 		this.ora = rs.getString("ora");
 		this.auto = rs.getString("auto");
 	}
-	
-	
-	
-	
-	//funziona?????????
-	
-	
-	
-	
 	
 	//Esegue la query per ottenere l'ultima posizione dell'auto con la targa inserita
 	public static Posizione getPosizioneAttuale(String Auto) {
