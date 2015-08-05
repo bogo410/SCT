@@ -100,6 +100,57 @@ public class Auto {
 
 	}
 	
+	//Esegue la query per ottenere l'amministratore
+	public static String getMailAdmin(){
+		
+		String res = "";
+		try {
+			
+			DataSourceConnection dsc = DataSourceConnection.getIstanza();
+			String query = "SELECT D.Email "
+						 + "FROM Dipendente AS D "
+						 + "WHERE D.Ruolo = 'Admin' ";
+			ResultSet rs = dsc.eseguiQuery(query, null);
+			System.out.print("----------" + query + "----------");
+			if (rs.next())
+				res = new String(rs.getString(1));
+		} catch (SQLException e) {
+					
+			System.out.println("Query fallita: " + e);
+		}
+		
+		System.out.print("\n\n----------res="+ res + "----------");
+		
+		return res;
+	}
+	
+	//Esegue la query per ottenere l'amministratore
+	public String getMailResp(){
+		
+		String res = "";
+		try {
+			
+			DataSourceConnection dsc = DataSourceConnection.getIstanza();
+			String query = "SELECT D.Email "
+						 + "FROM Dipendente AS D JOIN Auto A "
+						 + "ON D.Matricola = A.CodResponsabile "
+						 + "WHERE A.Targa = ? ";
+			Object[] parametri = new Object[1];
+			parametri[0] = this.targa;
+			ResultSet rs = dsc.eseguiQuery(query, parametri);
+			System.out.print("----------" + query + "----------");
+			if (rs.next())
+				res = new String(rs.getString(1));
+		} catch (SQLException e) {
+					
+			System.out.println("Query fallita: " + e);
+		}
+		
+		System.out.print("\n\n----------res="+ res + "----------");
+		
+		return res;
+	}
+	
 	//Esegue la query per ottenere il ruolo dell'utente loggato
 	public static String getRuoloUtente(String matricolaUtente){
 		
@@ -115,6 +166,60 @@ public class Auto {
 			parametri[0] = matricolaUtente;
 			ResultSet rs = dsc.eseguiQuery(query, parametri);
 			System.out.print("----------" + query + matricolaUtente + "----------");
+			if (rs.next())
+				res = new String(rs.getString(1));
+		} catch (SQLException e) {
+					
+			System.out.println("Query fallita: " + e);
+		}
+		
+		System.out.print("\n\n----------res="+ res + "----------");
+		
+		return res;
+	}
+	
+	//Esegue la query per ottenere la latitudine attuale dell'auto
+	public String getLatitudine(){
+		
+		String res = "";
+		try {
+			
+			DataSourceConnection dsc = DataSourceConnection.getIstanza();
+			String query = "SELECT P.Latitudine "
+						 + "FROM Posizione AS P JOIN Auto A "
+						 + "ON P.Auto = A.Targa "
+						 + "WHERE A.Targa = ? ";
+			Object[] parametri = new Object[1];
+			parametri[0] = this.targa;
+			ResultSet rs = dsc.eseguiQuery(query, parametri);
+			System.out.print("----------" + query + "----------");
+			if (rs.next())
+				res = new String(rs.getString(1));
+		} catch (SQLException e) {
+					
+			System.out.println("Query fallita: " + e);
+		}
+		
+		System.out.print("\n\n----------res="+ res + "----------");
+		
+		return res;
+	}
+	
+	//Esegue la query per ottenere la longitudine attuale dell'auto
+	public String getLongitudine(){
+		
+		String res = "";
+		try {
+			
+			DataSourceConnection dsc = DataSourceConnection.getIstanza();
+			String query = "SELECT P.Longitudine "
+						 + "FROM Posizione AS P JOIN Auto A "
+						 + "ON P.Auto = A.Targa "
+						 + "WHERE A.Targa = ? ";
+			Object[] parametri = new Object[1];
+			parametri[0] = this.targa;
+			ResultSet rs = dsc.eseguiQuery(query, parametri);
+			System.out.print("----------" + query + "----------");
 			if (rs.next())
 				res = new String(rs.getString(1));
 		} catch (SQLException e) {

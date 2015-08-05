@@ -57,7 +57,7 @@
 					<br>
 					<%
 						//se la modalità è "Sending alarm" appare il menù di gestione dell'allarme specifico
-						if(modalita.equals("Sending alarm")){
+						if(modalita.contains("Sending alarm")){
 							//se l'utente logato è un admin
 							if( (Auto.getRuoloUtente(matricola).equals("Admin"))){
 					%>
@@ -81,7 +81,7 @@
 					
 					<%
 						//se la modalità è "Alarm received" appare il menù di gestione dell'allarme specifico
-						if(modalita.equals("Alarm received")){//se l'utente logato è un admin
+						if(modalita.contains("Alarm received")){//se l'utente logato è un admin
 							if( (Auto.getRuoloUtente(matricola).equals("Admin"))){
 					%>
 					<h4> Gestione allarme: </h4>
@@ -97,6 +97,24 @@
 					%>
 					 &nbsp;&nbsp;&nbsp; - <a href="modSafe.jsp?auto=<%=targa%>"> Reimposta la modalità "Safe"</a>
 					<br>
+					<%	
+						}
+					%>
+					
+					<%
+						//se la modalità è "Sending alarm" appare il menù di gestione dell'allarme specifico
+						if(modalita.contains("Limit exceeded")){
+							//se l'utente logato è un admin
+							if( (Auto.getRuoloUtente(matricola).equals("Admin"))){
+					%>
+					<h4> Gestione allarme: </h4>
+					 &nbsp;&nbsp;&nbsp; - <a href="contattiResp.jsp?auto=<%=targa%>"> Contatta il Responsabile</a>
+					<br>
+					<%	
+						}
+					%>
+				
+					 &nbsp;&nbsp;&nbsp; - <a href="modSafe.jsp?auto=<%=targa%>"> Reimposta la modalità "Safe"</a>
 					<%	
 						}
 					%>

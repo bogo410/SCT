@@ -113,11 +113,6 @@
 	  				<br>
 	  				e-Mail :	<%=dip.getEmail()%>
 	  				<br>
-	  				<br>
-	  				<br>
-	  				<br>
-	  				<a href="modifica.jsp"> Modifica</a>
-	    		
         </div>
     </div>
     <div class="push"></div>

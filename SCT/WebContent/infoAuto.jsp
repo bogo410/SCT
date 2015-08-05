@@ -188,7 +188,7 @@ function codeLatLng() {
 				<input type="hidden" name="hiddenLong" id="hiddenLong" value="<%=longitudine%>">
   				<br>
   				<%
-				if(a.getModalita().contains("Alarm") || a.getModalita().contains("alarm")){
+				if( !a.getModalita().contains("Safe") ){
 				%>
   				Modalita :	<a href="infoModalita.jsp?auto=<%=targa%>&modal=<%=modalita%>"> <font color="red"> <%=modalita%></font></a>
   				<%
