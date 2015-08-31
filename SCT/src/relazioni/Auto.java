@@ -16,7 +16,7 @@ public class Auto {
 	private int limite;
 	private String codResponsabile;
 	
-	public Auto(String targa, String modello, float latitudine, float longitudine, String modalita, int velocita, int limite, String codResponsabile) {
+	public Auto(String targa, String modello, String modalita, int velocita, int limite, String codResponsabile) {
 		
 		this.targa = targa;
 		this.modello = modello;
@@ -252,23 +252,23 @@ public class Auto {
 	}
 	
 	//esegue l'update del limite con il nuovo limite passato
-		public void updateLimite(int nuovoLimite){
-			try {
-				
-				DataSourceConnection dsc = DataSourceConnection.getIstanza();
-				String query = "UPDATE Auto "
-							 + "SET Limite = ? "
-							 + "WHERE Targa = ? ";
-				Object[] parametri = new Object[2];
-				parametri[0] = nuovoLimite;
-				parametri[1] = this.targa;
-				dsc.updateQuery(query, parametri);
-				System.out.print("----------" + query + this.targa + nuovoLimite + "----------");
-			} catch (SQLException e) {
-						
-				System.out.println("Query fallita: " + e);
-			}
+	public void updateLimite(int nuovoLimite){
+		try {
+			
+			DataSourceConnection dsc = DataSourceConnection.getIstanza();
+			String query = "UPDATE Auto "
+						 + "SET Limite = ? "
+						 + "WHERE Targa = ? ";
+			Object[] parametri = new Object[2];
+			parametri[0] = nuovoLimite;
+			parametri[1] = this.targa;
+			dsc.updateQuery(query, parametri);
+			System.out.print("----------" + query + this.targa + nuovoLimite + "----------");
+		} catch (SQLException e) {
+					
+			System.out.println("Query fallita: " + e);
 		}
+	}
 
 	//Getters e Setters
 	public String getTarga() {
